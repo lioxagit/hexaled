@@ -1,1 +1,0 @@
-Hexacopter LED lights.
