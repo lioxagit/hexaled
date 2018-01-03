@@ -165,6 +165,8 @@ void setup() {
 }
 
 void loop() {
+
+  
  rc_read_values();
  if (rc_values[RC_CH1] >= 1000)  {++mode;}
  //  Serial.print("CH1:"); Serial.print(rc_values[RC_CH1]); Serial.print("\t");
