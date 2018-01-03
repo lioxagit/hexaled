@@ -109,7 +109,7 @@ ISR(TIMER2_COMPA_vect)
 
 void loop()
 {
- delay(5);
+ delay(10);
  roll=sbus.getNormalizedChannel(1);
  pitch=sbus.getNormalizedChannel(2);
  thr=sbus.getNormalizedChannel(3);
