@@ -25,7 +25,7 @@ char strip_;
 uint16_t rc_values[RC_NUM_CHANNELS];
 uint32_t rc_start[RC_NUM_CHANNELS];
 volatile uint16_t rc_shared[RC_NUM_CHANNELS];
-unsigned int mode=0,blink_mode=0,brightness=20,case1=0;
+unsigned int mode=0,blink_mode=0,blink_mode6=0,brightness=20,case1=0;
 uint32_t none,red,green,blue,yellow,i,i1,LEDr=0 ;
 
 void rc_read_values() {
@@ -225,18 +225,68 @@ switch (mode) {
         }
       break;
   case 3 :
-    if (blink_mode == 0){
-      for (i1=0; i1<5; i1++) {strip_2.setPixelColor(i1, yellow);}
-      for (i1=5; i1<10; i1++) {strip_2.setPixelColor(i1, blue);}
-      strip_2.show();
-      }
-      else
-      {
-       for (i1=0; i1<5; i1++) {strip_2.setPixelColor(i1, none);}
-      for (i1=5; i1<10; i1++) {strip_2.setPixelColor(i1, none);}
-      strip_2.show();
-      }
+        for (i=0; i<3; i++) {
+          for (i1=0; i1<24; i1++) {strip_1.setPixelColor(i1, red);}
+          for (i1=0; i1<24; i1++) {strip_2.setPixelColor(i1, red);}
+          for (i1=0; i1<24; i1++) {strip_4.setPixelColor(i1, green);}
+          for (i1=0; i1<24; i1++) {strip_5.setPixelColor(i1, green);}
+          
+          strip_1.show();
+          strip_2.show();         
+          strip_4.show();
+          strip_5.show();
+        delay(200);
+          colorClear1();
+          colorClear2();
+          colorClear3();
+          colorClear4();
+          colorClear5();
+          colorClear6();
+        delay(200);
+        }
+
+          for (i1=0; i1<24; i1++) {strip_3.setPixelColor(i1, blue);}
+          for (i1=0; i1<24; i1++) {strip_6.setPixelColor(i1, blue);}
+          strip_3.show();
+          strip_6.show();
+        delay(500);
+        colorClear3();
+        colorClear6();
+          
     break;
+    
+    case 4 :
+          colorClear1();
+          colorClear2();
+          colorClear3();
+          colorClear4();
+          colorClear5();
+          colorClear6();
+          
+           switch (blink_mode6) {
+          case 1 :
+              for (i1=2; i1<16; i1++) {
+                strip_1.setPixelColor(i1, red);
+                strip_1.setPixelColor(((i1/2)+16), red);
+              }
+              strip_1.show();
+              
+               
+          break;
+          case 2 :
+          break;
+          case 3 :
+          break;
+          case 4 :
+          break;
+          case 5 :
+          break;
+          case 6 :
+          break;
+          
+           }
+    break;
+
   //default:
     //Serial.print(mode);
     
@@ -244,8 +294,10 @@ switch (mode) {
 
 //Serial.println(blink_mode);
 ++blink_mode;
+++blink_mode6;
 
 if ( blink_mode >= 3 ) {blink_mode = 0;}
+if ( blink_mode6 >= 7 ) {blink_mode6 = 1;}
 
 if (mode >= 4 ) {mode = 0;}
 delay(250);
