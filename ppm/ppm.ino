@@ -266,25 +266,81 @@ switch (mode) {
            switch (blink_mode6) {
           case 1 :
               for (i1=2; i1<16; i1++) {
+                strip_6.setPixelColor(i1, none);
+                strip_6.setPixelColor(((i1/2)+16), none);
                 strip_1.setPixelColor(i1, red);
                 strip_1.setPixelColor(((i1/2)+16), red);
-              }
               strip_1.show();
-              
-               
+              strip_6.show();
+              }
           break;
+
           case 2 :
+              for (i1=2; i1<16; i1++) {
+                strip_1.setPixelColor(i1, none);
+                strip_1.setPixelColor(((i1/2)+16), none);
+                
+                strip_2.setPixelColor(i1, red);
+                strip_2.setPixelColor(((i1/2)+16), red);
+                
+              strip_1.show();
+              strip_2.show();
+              }
+              
           break;
           case 3 :
+              for (i1=2; i1<16; i1++) {
+                strip_2.setPixelColor(i1, none);
+                strip_2.setPixelColor(((i1/2)+16), none);
+                
+                strip_3.setPixelColor(i1, blue);
+                strip_3.setPixelColor(((i1/2)+16), blue);
+                
+              strip_2.show();
+              strip_3.show();
+              }
           break;
           case 4 :
+              for (i1=2; i1<16; i1++) {
+                strip_3.setPixelColor(i1, none);
+                strip_3.setPixelColor(((i1/2)+16), none);
+                
+                strip_4.setPixelColor(i1, green);
+                strip_4.setPixelColor(((i1/2)+16), green);
+                
+              strip_3.show();
+              strip_4.show();
+              }
           break;
           case 5 :
+              for (i1=2; i1<16; i1++) {
+                strip_4.setPixelColor(i1, none);
+                strip_4.setPixelColor(((i1/2)+16), none);
+                
+                strip_5.setPixelColor(i1, green);
+                strip_5.setPixelColor(((i1/2)+16), green);
+                
+              strip_4.show();
+              strip_5.show();
+              }
           break;
           case 6 :
+              for (i1=2; i1<16; i1++) {
+                strip_5.setPixelColor(i1, none);
+                strip_5.setPixelColor(((i1/2)+16), none);
+                
+                strip_6.setPixelColor(i1, blue);
+                strip_6.setPixelColor(((i1/2)+16), blue);
+                
+              strip_5.show();
+              strip_6.show();
+              }
           break;
           
            }
+    break;
+    case 5 :
+
     break;
 
   //default:
