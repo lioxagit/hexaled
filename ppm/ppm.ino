@@ -14,18 +14,18 @@
 #define RC_CH3_INPUT  A2
 #define RC_CH4_INPUT  A3
 
-Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(28, 6, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(28, 7, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(28, 8, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(24, 9, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_5 = Adafruit_NeoPixel(24, 10, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip_6 = Adafruit_NeoPixel(24, 11, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(28, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(28, 3, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(28, 4, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(28, 5, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_5 = Adafruit_NeoPixel(28, 6, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_6 = Adafruit_NeoPixel(28, 7, NEO_GRB + NEO_KHZ800);
 
 char strip_;
 uint16_t rc_values[RC_NUM_CHANNELS];
 uint32_t rc_start[RC_NUM_CHANNELS];
 volatile uint16_t rc_shared[RC_NUM_CHANNELS];
-unsigned int mode=0,blink_mode=0,blink_mode6=0,brightness=20,case1=0;
+unsigned int mode=4,blink_mode=0,blink_mode6=0,brightness=20,case1=0;
 uint32_t none,red,green,blue,yellow,i,i1,LEDr=0 ;
 
 void rc_read_values() {
@@ -225,7 +225,7 @@ switch (mode) {
         }
       break;
   case 3 :
-        for (i=0; i<3; i++) {
+        for (i=0; i<2; i++) {
           for (i1=0; i1<24; i1++) {strip_1.setPixelColor(i1, red);}
           for (i1=0; i1<24; i1++) {strip_2.setPixelColor(i1, red);}
           for (i1=0; i1<24; i1++) {strip_4.setPixelColor(i1, green);}
@@ -235,48 +235,49 @@ switch (mode) {
           strip_2.show();         
           strip_4.show();
           strip_5.show();
-        delay(200);
+        delay(100);
           colorClear1();
           colorClear2();
           colorClear3();
           colorClear4();
           colorClear5();
           colorClear6();
-        delay(200);
+        delay(100);
         }
 
           for (i1=0; i1<24; i1++) {strip_3.setPixelColor(i1, blue);}
           for (i1=0; i1<24; i1++) {strip_6.setPixelColor(i1, blue);}
           strip_3.show();
           strip_6.show();
-        delay(500);
+        delay(300);
         colorClear3();
         colorClear6();
           
     break;
     
     case 4 :
-          colorClear1();
-          colorClear2();
-          colorClear3();
-          colorClear4();
-          colorClear5();
-          colorClear6();
+//          colorClear1();
+//          colorClear2();
+//          colorClear3();
+//          colorClear4();
+//          colorClear5();
+//          colorClear6();
           
            switch (blink_mode6) {
           case 1 :
-              for (i1=2; i1<16; i1++) {
+              for (i1=16; i1>2; i1--) {
                 strip_6.setPixelColor(i1, none);
                 strip_6.setPixelColor(((i1/2)+16), none);
                 strip_1.setPixelColor(i1, red);
                 strip_1.setPixelColor(((i1/2)+16), red);
               strip_1.show();
               strip_6.show();
+              delay(10);
               }
           break;
 
           case 2 :
-              for (i1=2; i1<16; i1++) {
+              for (i1=16; i1>2; i1--) {
                 strip_1.setPixelColor(i1, none);
                 strip_1.setPixelColor(((i1/2)+16), none);
                 
@@ -285,6 +286,7 @@ switch (mode) {
                 
               strip_1.show();
               strip_2.show();
+              delay(10);
               }
               
           break;
@@ -298,6 +300,7 @@ switch (mode) {
                 
               strip_2.show();
               strip_3.show();
+              delay(10);
               }
           break;
           case 4 :
@@ -310,6 +313,7 @@ switch (mode) {
                 
               strip_3.show();
               strip_4.show();
+              delay(10);
               }
           break;
           case 5 :
@@ -322,6 +326,7 @@ switch (mode) {
                 
               strip_4.show();
               strip_5.show();
+              delay(10);
               }
           break;
           case 6 :
@@ -334,14 +339,13 @@ switch (mode) {
                 
               strip_5.show();
               strip_6.show();
+              delay(10);
               }
           break;
           
            }
     break;
-    case 5 :
 
-    break;
 
   //default:
     //Serial.print(mode);
@@ -355,7 +359,7 @@ switch (mode) {
 if ( blink_mode >= 3 ) {blink_mode = 0;}
 if ( blink_mode6 >= 7 ) {blink_mode6 = 1;}
 
-if (mode >= 4 ) {mode = 0;}
+if (mode >= 6 ) {mode = 0;}
 delay(250);
 }
 
