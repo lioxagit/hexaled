@@ -249,7 +249,7 @@ switch (mode) {
           for (i1=0; i1<24; i1++) {strip_6.setPixelColor(i1, blue);}
           strip_3.show();
           strip_6.show();
-        delay(300);
+        delay(400);
         colorClear3();
         colorClear6();
           
@@ -265,7 +265,7 @@ switch (mode) {
           
            switch (blink_mode6) {
           case 1 :
-              for (i1=16; i1>2; i1--) {
+              for (i1=2; i1<16; i1++) {
                 strip_6.setPixelColor(i1, none);
                 strip_6.setPixelColor(((i1/2)+16), none);
                 strip_1.setPixelColor(i1, red);
@@ -277,7 +277,7 @@ switch (mode) {
           break;
 
           case 2 :
-              for (i1=16; i1>2; i1--) {
+              for (i1=2; i1<16; i1++) {
                 strip_1.setPixelColor(i1, none);
                 strip_1.setPixelColor(((i1/2)+16), none);
                 
@@ -360,7 +360,7 @@ if ( blink_mode >= 3 ) {blink_mode = 0;}
 if ( blink_mode6 >= 7 ) {blink_mode6 = 1;}
 
 if (mode >= 6 ) {mode = 0;}
-delay(250);
+delay(200);
 }
 
 
