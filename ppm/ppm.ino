@@ -14,7 +14,7 @@
 #define RC_CH3_INPUT  A2
 #define RC_CH4_INPUT  A3
 
-Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(28, 2, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip_1 = Adafruit_NeoPixel(144, 2, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip_2 = Adafruit_NeoPixel(28, 3, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip_3 = Adafruit_NeoPixel(28, 4, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel strip_4 = Adafruit_NeoPixel(28, 5, NEO_GRB + NEO_KHZ800);
@@ -176,11 +176,26 @@ void loop() {
  Serial.println(mode);
 switch (mode) {
   case 0 :
+  
+          for (i1=0; i1<24; i1++) {strip_1.setPixelColor(i1, none);}
+          for (i1=0; i1<24; i1++) {strip_2.setPixelColor(i1, none);}
+          for (i1=0; i1<24; i1++) {strip_3.setPixelColor(i1, none);}
+          for (i1=0; i1<24; i1++) {strip_4.setPixelColor(i1, none);}
+          for (i1=0; i1<24; i1++) {strip_5.setPixelColor(i1, none);}
+          for (i1=0; i1<24; i1++) {strip_6.setPixelColor(i1, none);}
+          
+          strip_1.show();
+          strip_2.show();         
+          strip_3.show();
+          strip_4.show();
+          strip_5.show();
+          strip_6.show();
+          
+      
     break;
 
   case 1 :
-      if (case1 == 0 )
-        {
+
           for (i1=0; i1<24; i1++) {strip_1.setPixelColor(i1, red);}
           for (i1=0; i1<24; i1++) {strip_2.setPixelColor(i1, red);}
           for (i1=0; i1<24; i1++) {strip_3.setPixelColor(i1, blue);}
@@ -194,9 +209,9 @@ switch (mode) {
           strip_4.show();
           strip_5.show();
           strip_6.show();
+      
+      break;
 
-          case1=1;
-          }
   case 2 :
     if (blink_mode == 0){
           for (i1=0; i1<24; i1++) {strip_1.setPixelColor(i1, red);}
