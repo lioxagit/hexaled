@@ -25,7 +25,7 @@ uint16_t rc_values[RC_NUM_CHANNELS];
 uint32_t rc_start[RC_NUM_CHANNELS];
 volatile uint16_t rc_shared[RC_NUM_CHANNELS];
 unsigned int mode=0,blink_mode=0,blink_mode6=0,brightness=255,case1=0;
-uint32_t none,red,green,blue,yellow,i,i1,LEDr=0 ;
+uint32_t none,red,green,blue,yellow,white,i,i1,LEDr=0 ;
 unsigned int array_case6[26] = {0, 17, 1, 16, 2, 15, 3, 14, 4, 13 , 5, 12, 18, 24, 6, 11, 19, 23, 7, 10, 20, 22, 8, 9, 21, 21};
 
 
@@ -105,6 +105,7 @@ void setup() {
   green = strip_1.Color(0, 255, 0); // Green
   blue = strip_1.Color(0, 0, 255); // Blue
   yellow = strip_1.Color(255, 255, 0); // Yellow
+  white = strip_1.Color(255, 255, 255);
 
 
   strip_2.begin();
@@ -116,6 +117,7 @@ void setup() {
   green = strip_2.Color(0, 255, 0); // Green
   blue = strip_2.Color(0, 0, 255); // Blue
   yellow = strip_2.Color(255, 255, 0); // Yellow
+  white = strip_2.Color(255, 255, 255);
 
 
   strip_3.begin();
@@ -127,6 +129,7 @@ void setup() {
   green = strip_3.Color(0, 255, 0); // Green
   blue = strip_3.Color(0, 0, 255); // Blue
   yellow = strip_3.Color(255, 255, 0); // Yellow
+  white = strip_3.Color(255, 255, 255);
 
   strip_4.begin();
   strip_4.setBrightness(brightness);
@@ -137,6 +140,7 @@ void setup() {
   green = strip_4.Color(0, 255, 0); // Green
   blue = strip_4.Color(0, 0, 255); // Blue
   yellow = strip_4.Color(255, 255, 0); // Yellow
+  white = strip_4.Color(255, 255, 255);
   
   strip_5.begin();
   strip_5.setBrightness(brightness);
@@ -147,6 +151,7 @@ void setup() {
   green = strip_5.Color(0, 255, 0); // Green
   blue = strip_5.Color(0, 0, 255); // Blue
   yellow = strip_5.Color(255, 255, 0); // Yellow
+  white = strip_5.Color(255, 255, 255);
 
   strip_6.begin();
   strip_6.setBrightness(brightness);
@@ -157,7 +162,12 @@ void setup() {
   green = strip_6.Color(0, 255, 0); // Green
   blue = strip_6.Color(0, 0, 255); // Blue
   yellow = strip_6.Color(255, 255, 0); // Yellow
+  white = strip_6.Color(255, 255, 255);
+  mode=0;
+
 }
+
+
 
 void loop() {
 
@@ -170,10 +180,17 @@ void loop() {
   }
  
   Serial.println(mode);
+
  
 switch (mode) {
   case 0 :
-  
+          strip_1.setBrightness(brightness);
+          strip_2.setBrightness(brightness);
+          strip_3.setBrightness(brightness);
+          strip_4.setBrightness(brightness);
+          strip_5.setBrightness(brightness);
+          strip_6.setBrightness(brightness);  
+          
           for (i1=0; i1<24; i1++) {strip_1.setPixelColor(i1, none);}
           for (i1=0; i1<24; i1++) {strip_2.setPixelColor(i1, none);}
           for (i1=0; i1<24; i1++) {strip_3.setPixelColor(i1, none);}
@@ -434,11 +451,61 @@ switch (mode) {
           strip_5.show();
           strip_6.show();
 
-          }
+          }  
+      break;
 
+      case 7 :
+
+          for (i1=0; i1<17; i1++) {strip_1.setPixelColor(i1, white);}
+          for (i1=0; i1<17; i1++) {strip_2.setPixelColor(i1, white);}
+          for (i1=0; i1<17; i1++) {strip_3.setPixelColor(i1, white);}
+          for (i1=0; i1<17; i1++) {strip_4.setPixelColor(i1, white);}
+          for (i1=0; i1<17; i1++) {strip_5.setPixelColor(i1, white);}
+          for (i1=0; i1<17; i1++) {strip_6.setPixelColor(i1, white);}
+          
+ if (blink_mode == 0){
+       for (i=255; i>1; i--) {
 
           
+          strip_1.setBrightness(i);
+          strip_2.setBrightness(i);
+          strip_3.setBrightness(i);
+          strip_4.setBrightness(i);
+          strip_5.setBrightness(i);
+          strip_6.setBrightness(i);  
+            
+          strip_1.show();
+          strip_2.show();         
+          strip_3.show();
+          strip_4.show();
+          strip_5.show();
+          strip_6.show();
           
+     
+      }
+ }
+    
+else
+{
+   for (i=1; i<255; i++) {
+
+          strip_1.setBrightness(i);
+          strip_2.setBrightness(i);
+          strip_3.setBrightness(i);
+          strip_4.setBrightness(i);
+          strip_5.setBrightness(i);
+          strip_6.setBrightness(i);                 
+          
+          strip_1.show();
+          strip_2.show();         
+          strip_3.show();
+          strip_4.show();
+          strip_5.show();
+          strip_6.show();
+   }
+     
+ }
+
       break;
       
   //default:
@@ -453,7 +520,7 @@ switch (mode) {
 if ( blink_mode >= 2 ) {blink_mode = 0;}
 if ( blink_mode6 >= 7 ) {blink_mode6 = 1;}
 
-if (mode >= 7 ) {mode = 0;}
+if (mode >= 8 ) {mode = 0;}
 delay(100);
 }
 
